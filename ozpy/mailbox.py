@@ -64,7 +64,7 @@ class Mailbox(OZSoap):
 		return self.send(soapname, body, urn)
 
 
-	def getMailbox(self, query="in:\"inbox\"", offset=0, limit=1, timezone="Asia/Jakarta"):
+	def search(self, query="in:\"inbox\"", offset=0, limit=1, timezone="Asia/Jakarta"):
 		"""
 		Get mailbox content requests
 		"""
