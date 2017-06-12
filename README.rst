@@ -9,7 +9,7 @@ Example
 --------
 
 fetch all account
-.. code-block: python
+.. code-block:: python
    from ozpy.zmprov import Zmprov
 
    zmprov = Zmprov(
@@ -22,7 +22,7 @@ fetch all account
 
 
 Sending email
-.. code-block: python
+.. code-block:: python
    from ozpy.mailbox import Mailbox
 
    mbx = Mailbox(
