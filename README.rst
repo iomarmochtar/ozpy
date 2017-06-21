@@ -28,7 +28,7 @@ or directly call the soap method (by omitting Request suffix)
 	# zmsoap_obj is an instance from class OZSoap
 
 	zmsoap_obj.CreateCos(
-			name=[{"_content": "barudong"}]
+		name=[{"_content": "barudong"}]
 	)
 
 you can use **zmsoap** to get the parameters in soap body by using **--verbose** and **--json**
