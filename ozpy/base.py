@@ -14,6 +14,15 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
+class OZInline(object):
+
+	def __init__(self, ozsoap, req_name):
+		self.ozsoap = ozsoap
+		self.req_name = req_name
+
+	def __call__(self, urn=None, **body):
+		return self.ozsoap.send(self.req_name, body=body, urn=urn)
+
 
 class OZSoap(object):
 	"""
@@ -153,8 +162,15 @@ class OZSoap(object):
 			return False
 			# raise ZCommonErr("Error was occur, response data: {0}".format(result))
 
-		# balikan sesuai dengan response yang diminta
+		# return by response as its requested
 		self.printMe('\nResponse BEGIN\n')
 		self.printMe(body, isarray=True)
 		self.printMe('\nResponse END\n')
 		return body['%sResponse'%soapname]
+
+
+	def __getattr__(self, soapname):
+		return OZInline(self, soapname)
+
+	def __getitem__(self, soapname):
+		return OZInline(self, soapname)
