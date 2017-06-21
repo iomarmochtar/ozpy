@@ -17,7 +17,7 @@ for example creating new COS (Class Of Service)
 
 		def create_cos(self, name):
 			body = {"name": [{
-				"_content": name
+			  "_content": name
 			}]}
 			return self.send("CreateCos", body)
 
