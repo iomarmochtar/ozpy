@@ -205,6 +205,12 @@ class Zmprov(OZSoap):
 	def ca(self, name, password, attrs=[]):
 		"""
 		Create account
+
+		Example data for attrs:
+		[
+			{'_content': 'My displayname', 'n': 'displayName'},
+			{'_content': 'Akuh', 'n': 'sn'},
+		]
 		"""
 
 		head = "CreateAccount"
