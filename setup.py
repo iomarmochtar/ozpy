@@ -1,13 +1,14 @@
 from setuptools import setup
 
 
+long_description = ''
 # Get the long description from the README file
 with open('README.rst', 'r') as f:
     long_description = f.read()
 
 setup(
     name='ozpy',
-    version='0.5',
+    version='0.6',
     license='GPL',
     long_description=long_description,
     url='https://github.com/iomarmochtar/ozpy',
