@@ -107,6 +107,30 @@ class Zmprov(OZSoap):
 
 		return self.send('AddAccountAlias', data)
 
+	def grr(self, zimbraemail,target, targetdst, emailright, right):
+		"""
+		GrantRightRequest
+		"""
+                data = {
+			"target":[{
+				"type":target,
+				"by": "name",
+				"_content":zimbraemail
+
+				}],
+			"grantee":[{
+				 "type":targetdst,
+			         "by": "name",
+                                 "_content":emailright
+				}],
+			"right":[{
+				"_content":right
+				}]
+			}
+
+
+                return self.send('GrantRight', data)
+
 	def raa(self, accountid, alias):
 		"""
 		Remove account alias
@@ -269,6 +293,21 @@ class Zmprov(OZSoap):
 		}
 
 		return self.send("ModifyCos", data)
+
+        def gcname(self, cosname, attrs=None):
+                """
+                Get COS based on COS ID
+                """
+                params = {
+                        "cos": { 
+                                        "by": "name",
+                                        "_content": cosname
+                                }
+                        }
+                if attrs:
+                        params["attrs"] = attrs
+                return self.send("GetCos", params)
+
 
 
 	def gc(self, cosid, attrs=None):

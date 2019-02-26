@@ -31,7 +31,7 @@ class OZSoap(object):
 	token = None
 	soapurl = None
 	isdebug = False
-
+	timeout= None
 	username = None
 	password = None
 
@@ -50,8 +50,6 @@ class OZSoap(object):
 		self.soapurl = soapurl
 		self.default_urn = default_urn
 		self.timeout = timeout
-		self.username = username
-		self.password = password
 
 		# if zinstance instance exists then set as attrbiute
 		if zinstance:
