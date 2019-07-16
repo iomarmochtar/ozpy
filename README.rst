@@ -1,7 +1,7 @@
 OZPY
 ====
 
-Python library for accessing Zimbra SOAP (https://wiki.zimbra.com/wiki/SOAP_API_Reference_Material_Beginning_with_ZCS_8).
+Python (2.7+ including 3.X) library for accessing Zimbra SOAP (https://wiki.zimbra.com/wiki/SOAP_API_Reference_Material_Beginning_with_ZCS_8) by using builtin Python library (no dependency required).
 Currently this library split into 2 parts: Zmprov and Mailbox.
 
 not all zmprov command(s) has been implemented, because i add them only based on customer/project needs
