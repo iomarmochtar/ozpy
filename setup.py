@@ -8,7 +8,7 @@ with open('README.rst', 'r') as f:
 
 setup(
     name='ozpy',
-    version='1.0',
+    version='1.0.1',
     license='GPL',
     long_description=long_description,
     url='https://github.com/iomarmochtar/ozpy',

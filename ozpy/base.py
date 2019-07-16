@@ -156,17 +156,7 @@ class OZSoap(object):
         self.printMe(sendjson, isarray=True)
         self.printMe('\nRequest END\n')
 
-        """
-        kwargs = {'verify': False}
-        if self.timeout:
-            kwargs['timeout'] = self.timeout
-
-        try:
-            result = requests.post(self.soapurl, json.dumps(sendjson), **kwargs).json()
-        except requests.exceptions.ConnectionError, e:
-            raise ZConnectionErr("Connection error: {0}".format(e))
-        """
-        result = None
+        response = None
         try:
             request = Request(self.soapurl)
             request.add_header('Content-Type', 'application/json')
@@ -175,10 +165,19 @@ class OZSoap(object):
             payload = json.dumps(sendjson)
             if py3:
                 payload = bytes(payload, 'utf-8')
-            response = urlopen(request, payload, context=ssl_cntx)
-            result = json.loads(response.read())
+            response = urlopen(request, payload, context=ssl_cntx, timeout=self.timeout)
         except HTTPError as e:
-            raise ZConnectionErr('Connection error: {}'.format(e))
+            if hasattr(e, 'fp'):
+                response = e.fp
+            else:
+                raise ZConnectionErr('Connection error: {}'.format(e))
+
+        if not response:
+            raise ZConnectionErr('Empty response returned')
+        
+        result = None
+        try:
+            result = json.loads(response.read())
         except ValueError as e:
             raise ZConnectionErr('Failed to parse response as json format: {}'.format(e))
 
