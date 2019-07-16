@@ -289,7 +289,7 @@ class Zmprov(OZSoap):
         if not result:
             return []
 
-        if result.has_key('account'):
+        if 'account' in result:
             for member in result['account']:
                 if uid:
                     data = {

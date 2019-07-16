@@ -8,18 +8,17 @@ with open('README.rst', 'r') as f:
 
 setup(
     name='ozpy',
-    version='0.6',
+    version='1.0',
     license='GPL',
     long_description=long_description,
     url='https://github.com/iomarmochtar/ozpy',
     author='Imam Omar Mochtar',
     author_email='iomarmochtar@gmail.com',
-    install_requires=['requests'],
     packages=['ozpy'],
     keywords='Zimbra Python library',
     classifiers=[
-        'Development Status :: 4 - Beta',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.7',
         'Natural Language :: English',
     ]
 )
