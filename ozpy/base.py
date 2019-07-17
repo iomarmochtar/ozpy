@@ -10,11 +10,10 @@ from .exceptions import ZLoginFailed, ZConnectionErr, ZCommonErr
 
 py3 = False
 try:
-    from urllib.request import Request, urlopen, HTTPError, urlparse  # Python 3
+    from urllib.request import Request, urlopen, HTTPError # Python 3
     py3 = True
 except ImportError:
     from urllib2 import Request, urlopen, HTTPError  # Python 2
-    from urlparse import urlparse
 
 # for acceptin untrusted certificate
 ssl_cntx = ssl.create_default_context()
@@ -165,19 +164,19 @@ class OZSoap(object):
             payload = json.dumps(sendjson)
             if py3:
                 payload = bytes(payload, 'utf-8')
-            response = urlopen(request, payload, context=ssl_cntx, timeout=self.timeout)
+            response = urlopen(request, payload, context=ssl_cntx, timeout=self.timeout).read()
         except HTTPError as e:
             if hasattr(e, 'fp'):
-                response = e.fp
+                response = e.fp.read()
             else:
                 raise ZConnectionErr('Connection error: {}'.format(e))
 
         if not response:
             raise ZConnectionErr('Empty response returned')
-        
+       
         result = None
         try:
-            result = json.loads(response.read())
+            result = json.loads(response)
         except ValueError as e:
             raise ZConnectionErr('Failed to parse response as json format: {}'.format(e))
 
