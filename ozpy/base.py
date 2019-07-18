@@ -47,14 +47,15 @@ class OZSoap(object):
     user_agent = 'OZPY Zimbra API Ver. {}'.format(VERSION)
 
     def __init__(self, username=None, password=None, soapurl=None,
-                 isdebug=False, default_urn='urn:zimbraAdmin', timeout=None, zinstance=None):
+                 isdebug=False, default_urn='urn:zimbraAdmin', 
+                 timeout=None, zinstance=None, token=None):
         """
         example for soapurl
         admin: https://192.168.113.75:7071/service/admin/soap
         account: https://192.168.113.75/service/soap
         """
 
-        if not zinstance and None in (username, password, soapurl):
+        if not zinstance and not token and None in (username, password, soapurl):
             raise ZCommonErr('You must specified username, password and soapurl or zinstance to initiate object')
 
         self.isdebug = isdebug
@@ -67,6 +68,8 @@ class OZSoap(object):
         # if zinstance instance exists then set as attrbiute
         if zinstance:
             self.setAttrs(zinstance)
+        elif token:
+            self.token = token
         else:
             self._login(username, password)
 

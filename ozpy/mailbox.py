@@ -12,7 +12,7 @@ class Mailbox(OZSoap):
 
     def __init__(self, *args, **kwargs):
 
-        default_urn = "urn:zimbraAccount"
+        default_urn = 'urn:zimbraAccount'
         super(Mailbox, self).__init__(default_urn=default_urn, *args, **kwargs)
 
     def _login(self, username, password):
@@ -21,12 +21,12 @@ class Mailbox(OZSoap):
         """
 
         client_soap_body = {
-            "account": {
-                "by": "name",
-                "_content": username
+            'account': {
+                'by': 'name',
+                '_content': username
             },
-            "password": {
-                "_content": password
+            'password': {
+                '_content': password
             }
         }
 
@@ -36,25 +36,25 @@ class Mailbox(OZSoap):
         """
         Send email request
         """
-        soapname = "SendMsg"
-        urn = "urn:zimbraMail"
+        soapname = 'SendMsg'
+        urn = 'urn:zimbraMail'
         body = {
-            "m":{
-                "e":[
+            'm':{
+                'e':[
                     {
-                        "t": "t",
-                        "a": to,
-                        "add": "0"
+                        't': 't',
+                        'a': to,
+                        'add': '0'
                     },
                 ],
-                "su":{
-                    "_content": subject
+                'su':{
+                    '_content': subject
                 },
-                "mp":[
+                'mp':[
                     {
-                        "ct":"text/plain",
-                        "content":{
-                            "_content": body
+                        'ct':'text/plain',
+                        'content':{
+                            '_content': body
                         }
                     }
                 ]
@@ -66,22 +66,22 @@ class Mailbox(OZSoap):
         """
         Get mailbox content requests
         """
-        soapname = "Search"
-        urn = "urn:zimbraMail"
+        soapname = 'Search'
+        urn = 'urn:zimbraMail'
         body = {
-            "sortBy": "dateDesc",
-            "tz": {
-                "id": timezone
+            'sortBy': 'dateDesc',
+            'tz': {
+                'id': timezone
             },
-            "locale": {
-                "_content": "en_US"
+            'locale': {
+                '_content': 'en_US'
             },
-            "offset": offset,
-            "limit": limit,
-            "query": query,
-            "types": "conversation",
-            "fetch": 1,
-            "html": 1
+            'offset': offset,
+            'limit': limit,
+            'query': query,
+            'types': 'conversation',
+            'fetch': 1,
+            'html': 1
         }
 
         return self.send(soapname, body, urn)
