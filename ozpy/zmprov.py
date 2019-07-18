@@ -1,3 +1,7 @@
+__author__ = 'Imam Omar Mochtar'
+__email__ = 'iomarmochtar@gmail.com'
+__license__ = 'GPL V.2'
+
 from .base import OZSoap
 from .exceptions import ZCommonErr
 

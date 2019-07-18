@@ -1,6 +1,6 @@
-__author__ = "Imam Omar Mochtar"
-__email__ = "iomarmochtar@gmail.com"
-__license__ = "GPL"
+__author__ = 'Imam Omar Mochtar'
+__email__ = 'iomarmochtar@gmail.com'
+__license__ = 'GPL'
 
 
 class ZLoginFailed(Exception):

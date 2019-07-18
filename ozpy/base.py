@@ -1,6 +1,6 @@
-__author__ = "Imam Omar Mochtar"
-__email__ = "iomarmochtar@gmail.com"
-__license__ = "GPL V.2"
+__author__ = 'Imam Omar Mochtar'
+__email__ = 'iomarmochtar@gmail.com'
+__license__ = 'GPL V.2'
 
 
 import json
