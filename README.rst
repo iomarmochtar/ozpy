@@ -51,7 +51,7 @@ fetch all account
 		password="superpassword",
 		soapurl="https://192.168.113.75:7071/service/admin/soap"
 	)
-	print zmprov.gaa()
+	print( zmprov.gaa() )
 
 
 Sending email

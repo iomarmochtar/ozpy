@@ -29,7 +29,11 @@ class OZInline(object):
         self.ozsoap = ozsoap
         self.req_name = req_name
 
-    def __call__(self, urn=None, **body):
+    def __call__(self, **body):
+        urn = None
+        if 'urn' in body:
+            urn = body['urn']
+            del body['urn']
         return self.ozsoap.send(self.req_name, body=body, urn=urn)
 
 
@@ -164,9 +168,9 @@ class OZSoap(object):
             request.add_header('Content-Type', 'application/json')
             request.add_header('User-Agent', self.user_agent)
 
-            payload = json.dumps(sendjson)
-            if py3:
-                payload = bytes(payload, 'utf-8')
+            payload = json.dumps(sendjson).encode('utf-8')
+            #if py3:
+            #    payload = bytes(payload, 'utf-8')
             response = urlopen(request, payload, context=ssl_cntx, timeout=self.timeout).read()
         except HTTPError as e:
             if hasattr(e, 'fp'):
@@ -179,7 +183,7 @@ class OZSoap(object):
        
         result = None
         try:
-            result = json.loads(response)
+            result = json.loads(response.decode('utf-8'))
         except ValueError as e:
             raise ZConnectionErr('Failed to parse response as json format: {}'.format(e))
 
