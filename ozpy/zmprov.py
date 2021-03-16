@@ -224,6 +224,30 @@ class Zmprov(OZSoap):
 
         return self.send(head, data)
 
+    def sp(self, name, password):
+        """
+        Set Password
+        """
+
+        acc = self.ga(name)
+        if not acc:
+            raise ZCommonErr('User {0} not found'.format(name))
+
+        zimbraId = None
+        for data in acc:
+            if data['n'] != 'zimbraId':
+                continue
+            zimbraId = data['_content']
+            break
+
+        head = 'SetPassword'
+        data = {
+            'id': zimbraId,
+            'newPassword': password
+        }
+
+        return self.send(head, data)
+
     def gac(self, shortd=False):
         """
         Get All COS
